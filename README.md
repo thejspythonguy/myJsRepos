@@ -1,2 +1,0 @@
-# myJsRepos
-Javascript Angular React
