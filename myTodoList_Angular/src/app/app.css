@@ -1,0 +1,16 @@
+.even-odd-checker.even {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.even-odd-checker.odd {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+

@@ -42,6 +42,18 @@
       <p class="empty-state">No todos yet. Add your first task above.</p>
     }
   </section>
+  <section>
+    <h2>Signal Counter {{ count() }}</h2>
+    <div class="even-odd-checker {{ isEven() ? 'even' : 'odd'}}">
+      @if(isEven()){
+        Even
+      } @else {
+        Odd
+      }
+    </div>
+    <button (click)="increment()">+</button>
+    <button (click)="decrement()">-</button>
+  </section>
 </main>
 
 <router-outlet />

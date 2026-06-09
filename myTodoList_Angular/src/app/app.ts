@@ -1,4 +1,4 @@
-import { Component, signal, effect, afterNextRender, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, effect, afterNextRender, ChangeDetectionStrategy, computed } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 interface Todo {
@@ -18,6 +18,8 @@ interface Todo {
 export class App {
   protected readonly title = signal('theJsPythonGuy TodoList Angular');
   todos = signal<Todo[]>([]);
+  count = signal(0);
+  isEven = computed(() => {return this.count() % 2 === 0} );
   private hydrated = false; // Tracks whether todos have finished loading from storage.
 
   // Loads saved todos after the first render and keeps later changes synced to localStorage.
@@ -54,4 +56,12 @@ export class App {
       mytodos.map((t) => (t.id === id ? { ...t, status: !t.status } : t)),
     );
   }
+
+  increment(){
+    this.count.set(this.count() + 1);
+  }
+  decrement(){
+    this.count.set(this.count() -1);
+  }
+
 }
