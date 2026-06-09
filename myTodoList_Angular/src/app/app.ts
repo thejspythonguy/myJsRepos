@@ -1,4 +1,4 @@
-import { Component, signal, effect, afterNextRender } from '@angular/core';
+import { Component, signal, effect, afterNextRender, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 interface Todo {
@@ -12,7 +12,8 @@ interface Todo {
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('theJsPythonGuy TodoList Angular');
@@ -41,16 +42,16 @@ export class App {
 
   // Adds a new incomplete todo with the entered title and the current date.
   addTodo(title: string) {
-    this.todos.update(mytodos => [
+    this.todos.update((mytodos) => [
       ...mytodos,
-      { id: mytodos.length + 1, title, status: false, date: new Date() }
+      { id: mytodos.length + 1, title, status: false, date: new Date() },
     ]);
   }
 
   // Flips the completed status for the todo that matches the provided id.
   toggleStatus(id: number) {
-    this.todos.update(mytodos =>
-      mytodos.map(t => t.id === id ? { ...t, status: !t.status } : t)
+    this.todos.update((mytodos) =>
+      mytodos.map((t) => (t.id === id ? { ...t, status: !t.status } : t)),
     );
   }
 }
